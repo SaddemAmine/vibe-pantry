@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Match Recipes{% endblock %}
+{% block content %}
+<h1>What Can I Cook?</h1>
+
+{% if matches %}
+<form method="post" action="/shopping">
+<table>
+    <tr><th></th><th>Recipe</th><th>Coverage</th><th>Matched</th><th>Details</th></tr>
+    {% for m in matches %}
+    <tr>
+        <td><input type="checkbox" name="recipe_ids" value="{{ m.recipe_id }}"></td>
+        <td><a href="/recipes/{{ m.recipe_id }}">{{ m.recipe_title }}</a></td>
+        <td>
+            {{ (m.coverage * 100)|round(0) }}%
+            <span class="coverage-bar"><span class="fill" style="width:{{ (m.coverage * 100)|round(0) }}%"></span></span>
+        </td>
+        <td>{{ m.total_matched }}/{{ m.total_required }}</td>
+        <td>
+            {% for im in m.ingredient_matches %}
+                <span class="{{ 'text-ok' if im.have else 'text-miss' }}">
+                    {{ im.ingredient_name }}{{ " (opt)" if im.optional else "" }}
+                </span>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<button type="submit" class="btn">Generate Shopping List</button>
+</form>
+{% else %}
+<p>No recipes found. <a href="/recipes/new">Add one!</a></p>
+{% endif %}
+{% endblock %}

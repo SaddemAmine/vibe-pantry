@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Recipes{% endblock %}
+{% block content %}
+<h1>Recipes</h1>
+<p><a href="/recipes/new">+ New Recipe</a></p>
+
+{% if recipes %}
+<table>
+    <tr><th>Title</th><th>Cuisine</th><th>Time</th><th>Servings</th><th>Tags</th></tr>
+    {% for r in recipes %}
+    <tr>
+        <td><a href="/recipes/{{ r.id }}">{{ r.title }}</a></td>
+        <td>{{ r.cuisine or '' }}</td>
+        <td>{{ (r.prep_time_minutes or 0) + (r.cook_time_minutes or 0) }} min</td>
+        <td>{{ r.servings }}</td>
+        <td>{% for t in r.tags %}<span class="tag">{{ t.tag }}</span>{% endfor %}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No recipes yet. <a href="/recipes/new">Create one.</a></p>
+{% endif %}
+{% endblock %}

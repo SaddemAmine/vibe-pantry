@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}New Recipe{% endblock %}
+{% block content %}
+<h1>New Recipe</h1>
+<div class="form-card">
+<form method="post" action="/recipes">
+    <label>Title
+        <input type="text" name="title" required placeholder="e.g. Pasta Pomodoro">
+    </label>
+    <label>Description
+        <textarea name="description" rows="2" placeholder="optional"></textarea>
+    </label>
+    <div class="form-row">
+        <label>Cuisine
+            <input type="text" name="cuisine" placeholder="e.g. Italian">
+        </label>
+        <label>Prep (min)
+            <input type="number" name="prep_time_minutes">
+        </label>
+        <label>Cook (min)
+            <input type="number" name="cook_time_minutes">
+        </label>
+        <label>Servings
+            <input type="number" name="servings" value="4">
+        </label>
+    </div>
+
+    <h3>Ingredients</h3>
+    <div id="ingredients-list">
+        <div class="ing-row">
+            <select name="ing_id_0">
+                <option value="">-- pick --</option>
+                {% for ing in ingredients %}
+                <option value="{{ ing.id }}">{{ ing.name }}</option>
+                {% endfor %}
+            </select>
+            <input type="number" name="ing_qty_0" placeholder="qty" step="0.01" value="1">
+            <select name="ing_unit_0">
+                <option value="pieces">pieces</option>
+                <option value="g">g</option>
+                <option value="kg">kg</option>
+                <option value="ml">ml</option>
+                <option value="L">L</option>
+                <option value="cups">cups</option>
+                <option value="tbsp">tbsp</option>
+                <option value="tsp">tsp</option>
+            </select>
+            <label><input type="checkbox" name="ing_optional_0"> optional</label>
+        </div>
+    </div>
+    <button type="button" class="btn btn-sm" onclick="addIngredient()">+ ingredient</button>
+
+    <h3>Steps</h3>
+    <div id="steps-list">
+        <div class="step-row">
+            <textarea name="step_0" placeholder="Step 1…" rows="2"></textarea>
+        </div>
+    </div>
+    <button type="button" class="btn btn-sm" onclick="addStep()">+ step</button>
+
+    <label>Tags (comma-separated)
+        <input type="text" name="tags" placeholder="e.g. quick, pasta, weeknight">
+    </label>
+    <button type="submit" class="btn">Save Recipe</button>
+</form>
+</div>
+
+<script>
+let ingIdx = 1, stepIdx = 1;
+function addIngredient() {
+    const sel = document.querySelector('[name="ing_id_0"]').cloneNode(true);
+    sel.name = 'ing_id_' + ingIdx;
+    sel.value = '';
+    const unitSel = document.querySelector('[name="ing_unit_0"]').cloneNode(true);
+    unitSel.name = 'ing_unit_' + ingIdx;
+    const div = document.createElement('div');
+    div.className = 'ing-row';
+    div.appendChild(sel);
+    const qty = document.createElement('input');
+    qty.type = 'number'; qty.name = 'ing_qty_' + ingIdx; qty.placeholder = 'qty'; qty.step = '0.01'; qty.value = '1';
+    div.appendChild(qty);
+    div.appendChild(unitSel);
+    const lbl = document.createElement('label');
+    const cb = document.createElement('input');
+    cb.type = 'checkbox'; cb.name = 'ing_optional_' + ingIdx;
+    lbl.appendChild(cb); lbl.append(' optional');
+    div.appendChild(lbl);
+    document.getElementById('ingredients-list').appendChild(div);
+    ingIdx++;
+}
+function addStep() {
+    const div = document.createElement('div');
+    div.className = 'step-row';
+    div.innerHTML = `<textarea name="step_${stepIdx}" placeholder="Step ${stepIdx+1}…" rows="2"></textarea>`;
+    document.getElementById('steps-list').appendChild(div);
+    stepIdx++;
+}
+</script>
+{% endblock %}

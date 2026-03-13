@@ -1,0 +1,20 @@
+[project]
+name = "vibe-pantry"
+version = "0.1.0"
+description = "Pantry inventory and recipe matching platform"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi[standard]",
+    "sqlalchemy[asyncio]",
+    "asyncpg",
+    "alembic",
+    "pydantic-settings",
+    "python-dotenv",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 99
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B"]
