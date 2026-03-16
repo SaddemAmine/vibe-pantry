@@ -4,69 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Vibe Pantry{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #1a1a1e;
-            color: #d8d8d8;
-            max-width: 920px;
+            font-family: 'Lora', Georgia, 'Times New Roman', serif;
+            background: #faf6f0;
+            color: #4a3f35;
+            max-width: 880px;
             margin: 0 auto;
-            padding: 0 1.5rem 3rem;
-            line-height: 1.5;
+            padding: 0 2rem 4rem;
+            line-height: 1.7;
+            background-image:
+                radial-gradient(ellipse at 15% 10%, rgba(200,170,130,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 90%, rgba(180,140,120,0.08) 0%, transparent 50%);
+            min-height: 100vh;
         }
+
+        /* ── Nav ── */
         nav {
             display: flex;
-            gap: 0.25rem;
-            padding: 1.25rem 0;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid #2e2e34;
+            align-items: center;
+            gap: 0.15rem;
+            padding: 1.5rem 0 1.2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px dashed #d4c4a8;
         }
-        nav a {
-            color: #a0a0a8;
+        nav .brand {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: #7a6652;
+            margin-right: auto;
             text-decoration: none;
-            padding: 0.4rem 0.9rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            transition: all 0.15s;
         }
-        nav a:hover { color: #e8e8e8; background: #28282e; }
-        h1 { color: #f0f0f0; margin-bottom: 0.75rem; font-weight: 600; font-size: 1.6rem; }
-        h2 { color: #c0c0c6; margin: 1.75rem 0 0.75rem; font-weight: 500; font-size: 1.15rem; }
-        h3 { color: #b0b0b6; margin: 1.25rem 0 0.5rem; font-weight: 500; font-size: 1rem; }
-        p { margin: 0.5rem 0; }
-        a { color: #8ab4f8; }
-        a:hover { color: #aecbfa; }
+        nav .brand:hover { color: #5a4a3a; }
+        nav a {
+            color: #8a7a66;
+            text-decoration: none;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            transition: all 0.2s;
+            font-style: italic;
+        }
+        nav a:hover {
+            color: #5a4a3a;
+            background: rgba(180,160,130,0.15);
+        }
 
-        /* Forms */
+        /* ── Typography ── */
+        h1 {
+            font-family: 'Caveat', cursive;
+            color: #5a4a3a;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.01em;
+        }
+        h2 {
+            font-family: 'Caveat', cursive;
+            color: #7a6a55;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 0.75rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px dotted #d4c4a8;
+        }
+        h3 {
+            font-family: 'Caveat', cursive;
+            color: #8a7a65;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.5rem;
+        }
+        p { margin: 0.5rem 0; }
+        a { color: #8b6e4e; }
+        a:hover { color: #6b4e2e; }
+
+        /* ── Floral divider ── */
+        .divider {
+            text-align: center;
+            color: #c8b89a;
+            font-size: 1.1rem;
+            margin: 1.5rem 0;
+            letter-spacing: 0.4em;
+        }
+
+        /* ── Forms ── */
         .form-card {
-            background: #222228;
-            border: 1px solid #2e2e34;
-            border-radius: 8px;
-            padding: 1.25rem;
+            background: rgba(255,252,247,0.7);
+            border: 1px solid #ddd0bb;
+            border-radius: 12px;
+            padding: 1.5rem;
             margin: 1rem 0;
+            box-shadow: 0 2px 12px rgba(140,120,90,0.06);
         }
         label {
             display: block;
-            margin-top: 0.75rem;
+            margin-top: 0.8rem;
             font-size: 0.85rem;
-            color: #909098;
+            color: #7a6a55;
             font-weight: 500;
+            font-style: italic;
         }
         input, select, textarea {
             display: block;
             width: 100%;
             margin-top: 0.3rem;
-            padding: 0.5rem 0.65rem;
-            background: #1a1a1e;
-            border: 1px solid #3a3a42;
-            border-radius: 5px;
-            color: #d8d8d8;
+            padding: 0.55rem 0.75rem;
+            background: #fdfbf7;
+            border: 1px solid #d4c4a8;
+            border-radius: 8px;
+            color: #4a3f35;
+            font-family: 'Lora', Georgia, serif;
             font-size: 0.9rem;
+            transition: border-color 0.2s;
         }
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #5a5a6a;
+            border-color: #b09a78;
+            box-shadow: 0 0 0 3px rgba(176,154,120,0.12);
         }
         .form-row {
             display: grid;
@@ -75,68 +135,85 @@
         }
         .form-row label { margin-top: 0; }
 
-        /* Buttons */
+        /* ── Buttons ── */
         .btn {
             display: inline-block;
-            padding: 0.5rem 1.1rem;
-            background: #2e2e38;
-            color: #d8d8d8;
-            border: 1px solid #3a3a44;
-            border-radius: 6px;
+            padding: 0.5rem 1.3rem;
+            background: linear-gradient(to bottom, #e8dcc8, #ddd0b8);
+            color: #5a4a3a;
+            border: 1px solid #c8b898;
+            border-radius: 20px;
             cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.15s;
+            font-family: 'Caveat', cursive;
+            font-size: 1.05rem;
+            font-weight: 600;
+            transition: all 0.2s;
             margin-top: 1rem;
+            letter-spacing: 0.02em;
         }
-        .btn:hover { background: #3a3a44; border-color: #4a4a54; }
+        .btn:hover {
+            background: linear-gradient(to bottom, #ddd0b8, #d0c0a0);
+            border-color: #b0a080;
+            box-shadow: 0 2px 8px rgba(140,120,80,0.12);
+        }
         .btn-sm {
-            padding: 0.25rem 0.6rem;
+            padding: 0.2rem 0.7rem;
             margin-top: 0;
-            font-size: 0.8rem;
+            font-size: 0.95rem;
         }
-        .btn-link {
-            background: none;
-            border: none;
-            color: #8ab4f8;
-            padding: 0;
-            margin: 0;
-            cursor: pointer;
-            font-size: 0.85rem;
+        .btn-danger {
+            background: linear-gradient(to bottom, #ebd8d0, #e0c8be);
+            border-color: #d4a898;
+            color: #7a4a3a;
         }
-        .btn-link:hover { color: #aecbfa; }
-        .btn-danger { border-color: #5a2e2e; }
-        .btn-danger:hover { background: #3a2020; border-color: #6a3a3a; }
+        .btn-danger:hover {
+            background: linear-gradient(to bottom, #e0c8be, #d4b8aa);
+            border-color: #c49888;
+        }
+        .btn-cook {
+            background: linear-gradient(to bottom, #d8e8d0, #c8dcc0);
+            border-color: #a8c898;
+            color: #3a5a2e;
+        }
+        .btn-cook:hover {
+            background: linear-gradient(to bottom, #c8dcc0, #b8d0b0);
+            border-color: #90b880;
+        }
 
-        /* Tables */
+        /* ── Tables ── */
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 1rem 0;
         }
         th, td {
-            padding: 0.55rem 0.85rem;
+            padding: 0.6rem 0.85rem;
             text-align: left;
-            border-bottom: 1px solid #2a2a30;
+            border-bottom: 1px dotted #d4c4a8;
         }
         th {
-            color: #808088;
-            font-weight: 500;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
+            font-family: 'Caveat', cursive;
+            color: #8a7a65;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.02em;
         }
-        tr:hover td { background: #222228; }
+        tr:hover td { background: rgba(220,200,170,0.12); }
 
-        /* Utilities */
+        /* ── Tags ── */
         .tag {
             display: inline-block;
-            background: #2a2a34;
-            color: #a0a0a8;
-            padding: 0.15rem 0.5rem;
-            border-radius: 4px;
+            background: rgba(180,160,130,0.15);
+            color: #7a6a55;
+            padding: 0.15rem 0.6rem;
+            border-radius: 12px;
             font-size: 0.8rem;
             margin: 0.1rem 0.15rem;
+            font-style: italic;
+            border: 1px solid rgba(180,160,130,0.25);
         }
+
+        /* ── Stat cards (home) ── */
         .stat-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -144,60 +221,104 @@
             margin: 1.5rem 0;
         }
         .stat-card {
-            background: #222228;
-            border: 1px solid #2e2e34;
-            border-radius: 8px;
+            background: rgba(255,252,247,0.7);
+            border: 1px solid #ddd0bb;
+            border-radius: 12px;
             padding: 1.25rem;
             text-align: center;
+            box-shadow: 0 2px 12px rgba(140,120,90,0.06);
         }
         .stat-card .num {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #f0f0f0;
+            font-family: 'Caveat', cursive;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #5a4a3a;
+            line-height: 1;
         }
         .stat-card .lbl {
-            font-size: 0.8rem;
-            color: #808088;
-            margin-top: 0.25rem;
+            font-size: 0.82rem;
+            color: #8a7a66;
+            margin-top: 0.3rem;
+            font-style: italic;
         }
+        .stat-card .icon {
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* ── Coverage bar ── */
         .coverage-bar {
             display: inline-block;
-            height: 6px;
-            border-radius: 3px;
-            background: #2a2a34;
+            height: 8px;
+            border-radius: 4px;
+            background: #e8dcc8;
             width: 80px;
             vertical-align: middle;
             margin-left: 0.5rem;
+            border: 1px solid #d4c4a8;
         }
         .coverage-bar .fill {
             display: block;
             height: 100%;
             border-radius: 3px;
-            background: #6a9f6a;
+            background: linear-gradient(to right, #a8c898, #7aaa68);
         }
-        .text-ok { color: #6a9f6a; }
-        .text-miss { color: #b06060; }
-        .text-muted { color: #666; }
+
+        /* ── Status colors ── */
+        .text-ok { color: #5a8a48; }
+        .text-miss { color: #a85a4a; }
+        .text-muted { color: #a09080; font-style: italic; }
         .inline-form { display: inline; }
 
-        /* Ingredient/step rows in recipe form */
-        .ing-row, .step-row { margin-bottom: 0.5rem; }
-        .ing-row select, .ing-row input { display: inline-block; width: auto; margin-right: 0.25rem; }
-        .ing-row label { display: inline; font-size: 0.85rem; color: #909098; }
+        /* ── Ingredient/step rows in recipe form ── */
+        .ing-row, .step-row { margin-bottom: 0.6rem; }
+        .ing-row select, .ing-row input {
+            display: inline-block;
+            width: auto;
+            margin-right: 0.3rem;
+        }
+        .ing-row label {
+            display: inline;
+            font-size: 0.85rem;
+            color: #8a7a65;
+        }
         .step-row textarea { width: 100%; }
 
-        /* Checkbox override */
-        input[type="checkbox"] { display: inline; width: auto; margin-right: 0.3rem; }
+        /* ── Checkbox ── */
+        input[type="checkbox"] {
+            display: inline;
+            width: auto;
+            margin-right: 0.3rem;
+            accent-color: #8a7a65;
+        }
+
+        /* ── Floral header accent ── */
+        .page-accent {
+            color: #c8b89a;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ── Action bar ── */
+        .action-bar {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed #d4c4a8;
+        }
     </style>
 </head>
 <body>
     <nav>
-        <a href="/">Home</a>
-        <a href="/ingredients">Ingredients</a>
-        <a href="/pantry">Pantry</a>
-        <a href="/recipes">Recipes</a>
-        <a href="/match">Match</a>
+        <a href="/" class="brand">⚘ Vibe Pantry</a>
+        <a href="/ingredients">ıngredients</a>
+        <a href="/pantry">pantry</a>
+        <a href="/recipes">recipes</a>
+        <a href="/match">match</a>
     </nav>
     {% block content %}{% endblock %}
+    <div class="divider">❀ ✿ ❀</div>
 </body>
 </html>

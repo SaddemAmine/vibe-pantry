@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Shopping List{% endblock %}
 {% block content %}
-<h1>Shopping List</h1>
+<h1>🛒 Shopping List</h1>
+<p class="page-accent">── a trip to the market ──</p>
 
 {% if shopping.items %}
 <table>
@@ -15,8 +16,8 @@
     {% endfor %}
 </table>
 {% else %}
-<p class="text-ok">You have everything you need!</p>
+<p class="text-ok">🌿 You have everything you need! Nothing to buy.</p>
 {% endif %}
 
-<p><a href="/match">← Back to matching</a></p>
+<p style="margin-top:1.5rem;"><a href="/match">← back to matching</a></p>
 {% endblock %}

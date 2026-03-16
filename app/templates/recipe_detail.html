@@ -5,18 +5,20 @@
 {% if recipe.description %}<p>{{ recipe.description }}</p>{% endif %}
 <p class="text-muted">
     {% if recipe.cuisine %}{{ recipe.cuisine }} · {% endif %}
-    Prep {{ recipe.prep_time_minutes or 0 }}m · Cook {{ recipe.cook_time_minutes or 0 }}m · {{ recipe.servings }} servings
+    prep {{ recipe.prep_time_minutes or 0 }}m · cook {{ recipe.cook_time_minutes or 0 }}m · {{ recipe.servings }} servings
 </p>
 {% if recipe.tags %}
 <p>{% for t in recipe.tags %}<span class="tag">{{ t.tag }}</span>{% endfor %}</p>
 {% endif %}
 
-<p>Coverage: {{ (availability.coverage * 100)|round(0) }}%
+<p style="margin-top:1rem;">
+    <span style="font-family:'Caveat',cursive; font-size:1.15rem;">pantry coverage:</span>
+    {{ (availability.coverage * 100)|round(0) }}%
     <span class="coverage-bar"><span class="fill" style="width:{{ (availability.coverage * 100)|round(0) }}%"></span></span>
-    ({{ availability.total_matched }}/{{ availability.total_required }})
+    <span class="text-muted">({{ availability.total_matched }}/{{ availability.total_required }})</span>
 </p>
 
-<h2>Ingredients</h2>
+<h2>🌿 ingredients</h2>
 <table>
     <tr><th>Ingredient</th><th>Qty</th><th>Unit</th><th>Optional</th><th>Pantry</th></tr>
     {% for ri in recipe.ingredients %}
@@ -24,12 +26,12 @@
         <td>{{ ri.ingredient.name }}</td>
         <td>{{ ri.quantity }}</td>
         <td>{{ ri.unit }}</td>
-        <td>{{ "yes" if ri.optional else "" }}</td>
+        <td class="text-muted">{{ "yes" if ri.optional else "" }}</td>
         <td>
             {% for m in availability.ingredient_matches %}
                 {% if m.ingredient_id == ri.ingredient_id %}
                     {% if m.have %}
-                        <span class="text-ok">✓</span>
+                        <span class="text-ok">✓ have it</span>
                     {% else %}
                         <span class="text-miss">✗ have {{ m.available_qty }}</span>
                     {% endif %}
@@ -40,19 +42,19 @@
     {% endfor %}
 </table>
 
-<h2>Steps</h2>
+<h2>✎ steps</h2>
 <ol style="padding-left:1.2rem;">
     {% for step in recipe.steps %}
-    <li style="margin-bottom:0.5rem;">{{ step.instruction }}</li>
+    <li style="margin-bottom:0.6rem;">{{ step.instruction }}</li>
     {% endfor %}
 </ol>
 
-<div style="margin-top:2.5rem; display:flex; gap:0.75rem;">
+<div class="action-bar">
     <form method="post" action="/recipes/{{ recipe.id }}/cook">
-        <button type="submit" class="btn" onclick="return confirm('Cook this recipe? Ingredients will be subtracted from your pantry.')">Cook 🍳</button>
+        <button type="submit" class="btn btn-cook" onclick="return confirm('Cook this recipe? Ingredients will be subtracted from your pantry.')">cook it 🍳</button>
     </form>
     <form method="post" action="/recipes/{{ recipe.id }}/delete">
-        <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this recipe?')">Delete Recipe</button>
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this recipe?')">discard recipe</button>
     </form>
 </div>
 {% endblock %}

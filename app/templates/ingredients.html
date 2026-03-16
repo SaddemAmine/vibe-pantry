@@ -1,23 +1,24 @@
 {% extends "base.html" %}
 {% block title %}Ingredients{% endblock %}
 {% block content %}
-<h1>Ingredients</h1>
+<h1>🌿 Ingredients</h1>
+<p class="page-accent">── what grows in the garden ──</p>
 
-<h2>Add Ingredient</h2>
+<h2>✎ add a new one</h2>
 <div class="form-card">
 <form method="post" action="/ingredients">
-    <label>Name
+    <label>name
         <input type="text" name="name" required placeholder="e.g. Tomato">
     </label>
     <div class="form-row">
-        <label>Category
+        <label>category
             <select name="category">
                 {% for c in categories %}
                 <option value="{{ c.value }}">{{ c.value }}</option>
                 {% endfor %}
             </select>
         </label>
-        <label>Unit type
+        <label>unit type
             <select name="default_unit_type">
                 {% for u in unit_types %}
                 <option value="{{ u.value }}">{{ u.value }}</option>
@@ -25,11 +26,11 @@
             </select>
         </label>
     </div>
-    <button type="submit" class="btn">Add Ingredient</button>
+    <button type="submit" class="btn">plant it 🌱</button>
 </form>
 </div>
 
-<h2>All Ingredients ({{ ingredients|length }})</h2>
+<h2>🌾 all ingredients ({{ ingredients|length }})</h2>
 <table>
     <tr><th>Name</th><th>Category</th><th>Unit</th></tr>
     {% for ing in ingredients %}

@@ -1,23 +1,28 @@
 {% extends "base.html" %}
 {% block title %}Vibe Pantry – Home{% endblock %}
 {% block content %}
-<h1>Vibe Pantry</h1>
-<p>Your pantry & recipe manager.</p>
+<h1>⚘ Vibe Pantry</h1>
+<p class="text-muted">your little kitchen companion</p>
 
 <div class="stat-grid">
     <div class="stat-card">
+        <div class="icon">🌿</div>
         <div class="num">{{ ingredient_count }}</div>
-        <div class="lbl">Ingredients</div>
+        <div class="lbl">ingredients</div>
     </div>
     <div class="stat-card">
+        <div class="icon">🏺</div>
         <div class="num">{{ pantry_count }}</div>
-        <div class="lbl">Pantry Items</div>
+        <div class="lbl">in the pantry</div>
     </div>
     <div class="stat-card">
+        <div class="icon">📖</div>
         <div class="num">{{ recipe_count }}</div>
-        <div class="lbl">Recipes</div>
+        <div class="lbl">recipes</div>
     </div>
 </div>
 
-<p><a href="/match">See what you can cook →</a></p>
+<p style="text-align:center; margin-top:1.5rem;">
+    <a href="/match" style="font-family:'Caveat',cursive; font-size:1.3rem;">see what you can cook today →</a>
+</p>
 {% endblock %}

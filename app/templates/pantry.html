@@ -1,24 +1,25 @@
 {% extends "base.html" %}
 {% block title %}Pantry{% endblock %}
 {% block content %}
-<h1>My Pantry</h1>
+<h1>🏺 My Pantry</h1>
+<p class="page-accent">── what’s on the shelves ──</p>
 
-<h2>Add Item</h2>
+<h2>✎ stock the shelves</h2>
 <div class="form-card">
 <form method="post" action="/pantry">
-    <label>Ingredient
+    <label>ingredient
         <select name="ingredient_id" required>
-            <option value="">-- pick --</option>
+            <option value="">~ choose ~</option>
             {% for ing in ingredients %}
             <option value="{{ ing.id }}">{{ ing.name }}</option>
             {% endfor %}
         </select>
     </label>
     <div class="form-row">
-        <label>Quantity
+        <label>quantity
             <input type="number" name="quantity" step="0.01" required>
         </label>
-        <label>Unit
+        <label>unit
             <select name="unit" required>
                 <option value="pieces">pieces</option>
                 <option value="g">g</option>
@@ -30,20 +31,20 @@
                 <option value="tsp">tsp</option>
             </select>
         </label>
-        <label>Expiry date
+        <label>best before
             <input type="date" name="expiry_date">
         </label>
     </div>
-    <label>Note
-        <input type="text" name="note" placeholder="optional">
+    <label>note
+        <input type="text" name="note" placeholder="a little reminder…">
     </label>
-    <button type="submit" class="btn">Add to Pantry</button>
+    <button type="submit" class="btn">add to pantry 🌾</button>
 </form>
 </div>
 
-<h2>Current Stock ({{ items|length }})</h2>
+<h2>🪭 on the shelves ({{ items|length }})</h2>
 <table>
-    <tr><th>Ingredient</th><th>Qty</th><th>Unit</th><th>Expires</th><th>Note</th><th></th></tr>
+    <tr><th>Ingredient</th><th>Qty</th><th>Unit</th><th>Best Before</th><th>Note</th><th></th></tr>
     {% for item in items %}
     <tr>
         <td>{{ item.ingredient.name }}</td>

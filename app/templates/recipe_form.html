@@ -1,35 +1,37 @@
 {% extends "base.html" %}
 {% block title %}New Recipe{% endblock %}
 {% block content %}
-<h1>New Recipe</h1>
+<h1>✎ Write a Recipe</h1>
+<p class="page-accent">── jot it down before you forget ──</p>
+
 <div class="form-card">
 <form method="post" action="/recipes">
-    <label>Title
+    <label>title
         <input type="text" name="title" required placeholder="e.g. Pasta Pomodoro">
     </label>
-    <label>Description
-        <textarea name="description" rows="2" placeholder="optional"></textarea>
+    <label>description
+        <textarea name="description" rows="2" placeholder="a few words about this dish…"></textarea>
     </label>
     <div class="form-row">
-        <label>Cuisine
+        <label>cuisine
             <input type="text" name="cuisine" placeholder="e.g. Italian">
         </label>
-        <label>Prep (min)
+        <label>prep (min)
             <input type="number" name="prep_time_minutes">
         </label>
-        <label>Cook (min)
+        <label>cook (min)
             <input type="number" name="cook_time_minutes">
         </label>
-        <label>Servings
+        <label>servings
             <input type="number" name="servings" value="4">
         </label>
     </div>
 
-    <h3>Ingredients</h3>
+    <h3>🌿 ingredients</h3>
     <div id="ingredients-list">
         <div class="ing-row">
             <select name="ing_id_0">
-                <option value="">-- pick --</option>
+                <option value="">~ choose ~</option>
                 {% for ing in ingredients %}
                 <option value="{{ ing.id }}">{{ ing.name }}</option>
                 {% endfor %}
@@ -48,20 +50,20 @@
             <label><input type="checkbox" name="ing_optional_0"> optional</label>
         </div>
     </div>
-    <button type="button" class="btn btn-sm" onclick="addIngredient()">+ ingredient</button>
+    <button type="button" class="btn btn-sm" onclick="addIngredient()">+ add another</button>
 
-    <h3>Steps</h3>
+    <h3>✎ steps</h3>
     <div id="steps-list">
         <div class="step-row">
-            <textarea name="step_0" placeholder="Step 1…" rows="2"></textarea>
+            <textarea name="step_0" placeholder="first, you…" rows="2"></textarea>
         </div>
     </div>
-    <button type="button" class="btn btn-sm" onclick="addStep()">+ step</button>
+    <button type="button" class="btn btn-sm" onclick="addStep()">+ next step</button>
 
-    <label>Tags (comma-separated)
-        <input type="text" name="tags" placeholder="e.g. quick, pasta, weeknight">
+    <label>tags (comma-separated)
+        <input type="text" name="tags" placeholder="e.g. comfort, autumn, quick">
     </label>
-    <button type="submit" class="btn">Save Recipe</button>
+    <button type="submit" class="btn">save recipe 📖</button>
 </form>
 </div>
 

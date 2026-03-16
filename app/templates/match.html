@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Match Recipes{% endblock %}
 {% block content %}
-<h1>What Can I Cook?</h1>
+<h1>🌻 What Can I Cook?</h1>
+<p class="page-accent">── let’s see what’s possible ──</p>
 
 {% if matches %}
 <form method="post" action="/shopping">
@@ -26,9 +27,9 @@
     </tr>
     {% endfor %}
 </table>
-<button type="submit" class="btn">Generate Shopping List</button>
+<button type="submit" class="btn">make a shopping list 🛒</button>
 </form>
 {% else %}
-<p>No recipes found. <a href="/recipes/new">Add one!</a></p>
+<p>No recipes written yet. <a href="/recipes/new">Jot one down ✎</a></p>
 {% endif %}
 {% endblock %}
